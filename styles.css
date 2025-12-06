@@ -80,6 +80,42 @@ header h1 {
   }
 }
 
+.duration-selector {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.duration-selector label {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.duration-selector input {
+  padding: 0.5rem 1rem;
+  border: 2px solid rgba(246, 166, 35, 0.3);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--deep);
+  max-width: 150px;
+  transition: all 0.2s ease;
+}
+
+.duration-selector input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(246, 166, 35, 0.2);
+}
+
+.duration-selector input:hover {
+  border-color: var(--accent-2);
+}
+
 .subtext {
   font-size: 1rem;
   color: var(--muted);
@@ -87,40 +123,76 @@ header h1 {
   line-height: 1.5;
 }
 
-.controls {
+.scrolling-mantra-container {
+  margin: 2rem 0;
+  padding: 2rem 0;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(90deg, 
+    rgba(255, 248, 238, 0) 0%, 
+    rgba(246, 166, 35, 0.12) 15%, 
+    rgba(246, 166, 35, 0.18) 50%, 
+    rgba(246, 166, 35, 0.12) 85%, 
+    rgba(255, 248, 238, 0) 100%);
+  border-radius: 1.5rem;
+  border: 2px solid rgba(246, 166, 35, 0.25);
+  box-shadow: 
+    inset 0 2px 15px rgba(246, 166, 35, 0.15),
+    0 4px 20px rgba(107, 30, 59, 0.08);
+}
+
+.scrolling-mantra {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
+  white-space: nowrap;
+  animation: scroll-mantra 12s linear infinite;
+  gap: 3rem;
+  padding: 0.5rem 0;
 }
 
-.controls button {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 0.75rem;
-  font-size: 1rem;
+.mantra-text {
+  font-size: clamp(1.8rem, 6vw, 3.5rem);
   font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background-color: var(--accent);
-  color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: var(--deep);
+  text-shadow: 
+    0 2px 6px rgba(107, 30, 59, 0.15),
+    0 0 25px rgba(246, 166, 35, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.12em;
+  display: inline-block;
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+  position: relative;
+  /* Ensure good contrast - deep color on light background */
+  filter: contrast(1.1);
 }
 
-.controls button:hover {
-  background-color: var(--accent-2);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.mantra-text::before {
+  content: '•';
+  color: var(--accent);
+  margin: 0 1rem;
+  opacity: 0.6;
+  font-size: 0.8em;
 }
 
-.controls button:focus {
-  outline: 3px solid rgba(246, 166, 35, 0.5);
-  outline-offset: 2px;
+@keyframes scroll-mantra {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-.controls button[aria-pressed="true"] {
-  background-color: var(--deep);
+/* Pause animation on reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .scrolling-mantra {
+    animation: none;
+    justify-content: center;
+  }
+  
+  .mantra-text::before {
+    display: none;
+  }
 }
 
 #sessionBadge {
@@ -152,13 +224,12 @@ footer {
 }
 
 @media (max-width: 520px) {
-  .controls {
-    flex-direction: column;
-    align-items: center;
+  .scrolling-mantra-container {
+    margin: 1.5rem 0;
+    padding: 1rem 0;
   }
   
-  .controls button {
-    width: 100%;
-    max-width: 200px;
+  .mantra-text {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
   }
 }
