@@ -141,12 +141,14 @@ header h1 {
     0 4px 20px rgba(107, 30, 59, 0.08);
 }
 
+/* ✅ FIX ADDED HERE */
 .scrolling-mantra {
   display: flex;
   white-space: nowrap;
   animation: scroll-mantra 12s linear infinite;
   gap: 3rem;
   padding: 0.5rem 0;
+  width: max-content; /* 🔥 IMPORTANT for smooth infinite */
 }
 
 .mantra-text {
@@ -162,7 +164,6 @@ header h1 {
   opacity: 0.95;
   transition: opacity 0.3s ease;
   position: relative;
-  /* Ensure good contrast - deep color on light background */
   filter: contrast(1.1);
 }
 
@@ -183,7 +184,6 @@ header h1 {
   }
 }
 
-/* Pause animation on reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   .scrolling-mantra {
     animation: none;
