@@ -145,7 +145,7 @@ header h1 {
 .scrolling-mantra {
   display: flex;
   white-space: nowrap;
-  animation: scroll-mantra 12s linear infinite;
+  animation: scrollLoop 20s linear infinite;
   gap: 3rem;
   padding: 0.5rem 0;
   width: max-content; /* 🔥 IMPORTANT for smooth infinite */
