@@ -407,7 +407,7 @@ body::before {
   gap: 2rem;
   width: max-content;
   /* KEY FIX: animation applied here for seamless -50% loop */
-  animation: scrollLoop 70s linear infinite;  /* slower — increase to taste */
+  animation: scrollLoop 55s linear infinite;  /* slower — increase to taste */
   will-change: transform;
 }
 
