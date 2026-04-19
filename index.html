@@ -3,67 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shanti — Devotional Timer</title>
+  <title>Shanti — સીતારામ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@300;400;600;700&family=Cinzel+Decorative:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<main>
-
-  <!-- Background music -->
+  <!-- Ambient background music -->
   <audio id="bgMusic" src="rr1.mp3" loop preload="auto" playsinline></audio>
 
-  <header>
-    <h1>સીતારામ</h1>
-  </header>
+  <!-- Decorative mandala rings -->
+  <div class="mandala-ring ring-1" aria-hidden="true"></div>
+  <div class="mandala-ring ring-2" aria-hidden="true"></div>
+  <div class="mandala-ring ring-3" aria-hidden="true"></div>
 
-  <section>
+  <!-- Floating particles -->
+  <div class="particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
 
-    <div class="duration-selector">
-      <label>Timer Duration (seconds):</label>
-      <input type="number" value="5">
-    </div>
+  <main>
 
-    <div class="timer">00:05</div>
+    <!-- ── HEADER ── -->
+    <header>
+      <div class="flame-icon" aria-hidden="true">🪔</div>
+      <h1 class="title-gujarati">સીતારામ</h1>
+      <p class="title-sub">S H A N T I</p>
+    </header>
 
-    <div class="subtext">
-      Focus on a prayer or breath. The timer will restart automatically.
-    </div>
+    <!-- ── TIMER SECTION ── -->
+    <section class="timer-section">
 
-    <!-- ✅ FIXED INFINITE SCROLL -->
-    <div class="scrolling-mantra-container">
+      <!-- Duration input -->
+      <div class="duration-selector">
+        <label for="durationInput">Duration (seconds)</label>
+        <input
+          id="durationInput"
+          type="number"
+          value="5"
+          min="1"
+          max="3600"
+          aria-label="Timer duration in seconds"
+        >
+      </div>
+
+      <!-- Timer display -->
+      <div class="timer-wrap">
+        <div class="timer-glow" aria-hidden="true"></div>
+        <div id="timer" class="timer" role="timer" aria-live="polite" aria-label="Time remaining">00:05</div>
+        <svg class="timer-ring" viewBox="0 0 220 220" aria-hidden="true">
+          <circle class="ring-bg" cx="110" cy="110" r="100"/>
+          <circle id="timerProgress" class="ring-progress" cx="110" cy="110" r="100"/>
+        </svg>
+      </div>
+
+      <!-- Subtext -->
+      <p class="subtext">
+        Focus on your breath. The timer restarts&nbsp;automatically.
+      </p>
+
+      <!-- Session badge -->
+      <div id="sessionBadge" class="session-badge" aria-live="polite" aria-label="Completed cycles">
+        <span class="badge-icon">🙏</span>
+        <span class="badge-text">Cycles: 0</span>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <button id="restartBtn" class="btn btn-restart" aria-label="Restart timer">
+          ↺ Restart
+        </button>
+        <button id="muteBtn" class="btn btn-mute" aria-label="Toggle sound">
+          🔔 Sound
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ── SCROLLING MANTRA ── -->
+    <div class="scrolling-mantra-container" aria-hidden="true">
       <div class="scrolling-mantra">
-
         <!-- First set -->
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
-
-        <!-- Duplicate set -->
+        <span class="mantra-dot">✦</span>
+        <!-- Duplicate set for seamless loop -->
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
+        <span class="mantra-dot">✦</span>
         <span class="mantra-text">સીતારામ</span>
-
+        <span class="mantra-dot">✦</span>
       </div>
     </div>
 
-  </section>
+    <!-- ── FOOTER ── -->
+    <footer>
+      <p>ૐ — Breathe · Pray · Chant</p>
+    </footer>
 
-  <footer>
-    <p>Breathe. Pray. Chant — સીતારામ</p>
-  </footer>
+  </main>
 
-</main>
-
+  <script src="script.js"></script>
 </body>
 </html>
