@@ -388,7 +388,7 @@ body::before {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 180px;   /* wider fade zone */
+  width: clamp(80px, 12vw, 220px);
   z-index: 2;
   pointer-events: none;
 }
