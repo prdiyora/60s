@@ -368,32 +368,27 @@ body::before {
 
 /* ── SCROLLING MANTRA ───────────────────────────────────── */
 .scrolling-mantra-container {
+  /* Full viewport width, no box feel */
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   overflow: hidden;
-  padding: 1.8rem 0;
+  padding: 1.6rem 0;
   margin-top: 2.5rem;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(246,166,35,0.07) 15%,
-    rgba(246,166,35,0.12) 50%,
-    rgba(246,166,35,0.07) 85%,
-    transparent 100%
-  );
-  border-top:    1px solid rgba(246,166,35,0.15);
-  border-bottom: 1px solid rgba(246,166,35,0.15);
+  /* Seamless fade into page background — no solid box */
+  background: transparent;
+  border-top:    1px solid rgba(246,166,35,0.10);
+  border-bottom: 1px solid rgba(246,166,35,0.10);
   position: relative;
 }
 
-/* Edge fade masks */
+/* Edge fade masks — wider so edges fully dissolve */
 .scrolling-mantra-container::before,
 .scrolling-mantra-container::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 120px;
+  width: 180px;   /* wider fade zone */
   z-index: 2;
   pointer-events: none;
 }
@@ -412,7 +407,7 @@ body::before {
   gap: 2rem;
   width: max-content;
   /* KEY FIX: animation applied here for seamless -50% loop */
-  animation: scrollLoop 22s linear infinite;
+  animation: scrollLoop 45s linear infinite;  /* slower — increase to taste */
   will-change: transform;
 }
 
